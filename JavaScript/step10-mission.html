@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: Montserrat;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<h1>Send Mail to President</h1>
+<p>Please Select a Country and wirte Petition </p><br>
+
+<div class="container">
+  <form>
+
+    <div class="row">
+        <div class="col-25">
+          <label for="country"><strong>Country</strong></label>
+        </div>
+        <div class="col-75">
+            <select style="font-family: Montserrat;" id="country" name="country" onchange="name_print(this.value)">
+                <option id="korea">Korea</option>
+                <option id="usa">USA</option>
+                <option id="japan">Japan</option>
+                <option id="china">China</option>
+                <option id="france">France</option>
+                <option id="italy">Italy</option>
+
+            <!-- <select id="seledtBox" onchange="alert(this.value)">
+                <option id="0">value1</option>
+                <option id="0">value2</option>
+                <option id="0">value3</option>
+                <option id="0">value1</option>
+                <option id="0">value1</option> -->
+          </select>
+        </div>
+      </div>
+
+<br><hr><br>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="pname">President Name</label>
+      </div>
+      <div class="col-75">
+        <input style="font-family: Montserrat;" type="text" id="fname" name="firstname">
+      </div>
+    </div>
+<!-- 
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">Last Name</label>
+      </div>
+      <div class="col-75">
+        <input style="font-family: Montserrat;" type="text" id="lname" name="lastname">
+      </div>
+    </div> -->
+
+    <div class="row">
+        <div class="col-25">
+          <label for="email">E-Mail</label>
+        </div>
+        <div class="col-75">
+          <input style="font-family: Montserrat;" type="text" id="email" name="Email">
+        </div>
+      </div>
+  
+    <div class="row">
+        <div class="col-25">
+          <label for="subject"><strong>Petition</strong></label>
+        </div>
+        <div class="col-75">
+          <textarea id="subject" name="subject" style="height:200px"></textarea>
+        </div>
+      </div>
+
+      <br><div class="row">
+        <input type="submit" value="Submit" onclick="alert('Complete')">
+      </div>
+
+  </form>
+</div>
+
+    <script>
+    function name_print(my_country){
+        for (p in president_all){
+            if (president_all[p].country == my_country){
+                document.getElementById("fname").value = president_all[p].firstName + ' ' +president_all[p].lastName;
+                document.getElementById("email").value = president_all[p].eMail;
+            }
+        }
+    }
+
+    let president_all = {
+        "p1": {
+            "country": "Korea",
+            "firstName":  "Jae-in",
+            "lastName": "Moon",
+            "eMail": "mji@bluehouse.com"
+        },
+        "p2": {
+            "country": "USA",
+            "firstName":  "Joseph",
+            "lastName": "Robinette Biden",
+            "eMail": "joe@whitehouse.com"
+        },
+        "p3": {
+            "country": "Japan",
+            "firstName":  "Suga",
+            "lastName": "Yoshi",
+            "eMail": "sy@gokyo.com"
+        },
+        "p4": {
+            "country": "China",
+            "firstName":  "Jinping",
+            "lastName": "Xi",
+            "eMail": "xxxj@mljs.com"
+        },
+        "p5": {
+            "country": "France",
+            "firstName":  "Emmanuel Jean-Michel ",
+            "lastName": "Frederic Macron",
+            "eMail": "macaron@baguette.com"
+        },
+        "p6": {
+            "country": "Italy",
+            "firstName":  "Mattarella",
+            "lastName": "Sergio",
+            "eMail": "margherita@pizza.com"
+        }
+    };
+    </script>
+
+</body>
+</html>
