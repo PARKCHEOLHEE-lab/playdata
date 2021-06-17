@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+    .col-75 {
+        float: left;
+        width: 50%;
+        margin-top: 10px;
+        margin-left: 475px;
+        margin
+    }
+
+</style>
+
+<body>
+    <br>
+    <hr width="50%"><br>
+    <div style="font-family: Montserrat; font-size: x-large; text-align: center;">
+        RESUME
+    </div> <br>
+
+    <div style="font-family: Montserrat; font-size: large; text-align: center;">
+        {{user_info.first_name}} {{user_info.last_name}} <br>
+        {{user_info.e_mail}} <br>
+        {{user_info.dob}} <br>
+        {{user_info.country}}
+    </div>
+    <br>
+    <hr width="50%"><br>
+    <div style="font-family: Montserrat; font-size: large; text-align: justify;" class="col-75">
+        {{user_info.intro}}
+    </div>
+
+</body>
+
+</html>
