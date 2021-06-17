@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+    button, input {font-family: Montserrat;}
+    body{
+        font-family: Montserrat; text-align: center;
+        margin-top: 50px;}
+
+</style>
+
+<body>
+    Word : <input type="text" name="word1" id="w1"><br><br>
+    Word : <input type="text" name="word2" id="w2"><br><br>
+
+    <button onclick="chanword()" style="margin-left: 21%;"><strong>Change</strong></button>
+
+    <script>
+
+        document.getElementById('w1').value = 'Baby';
+        document.getElementById('w2').value = 'Shark';
+        
+        function chanword(){
+
+        v1 = document.getElementById('w1').value;
+        v2 = document.getElementById('w2').value;
+
+        document.getElementById('w2').value = v1;
+        document.getElementById('w1').value = v2;
+        alert('Changing Word ! ')
+            
+        }
+
+    </script>
+</body>
+</html>

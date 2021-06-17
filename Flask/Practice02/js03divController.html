@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    button,
+    input {
+        font-family: Montserrat;
+    }
+
+    body {
+        font-family: Montserrat;
+        text-align: center;
+        margin-top: 50px;
+    }
+</style>
+
+<body>
+
+    <div>
+        <form>
+            <label for="fname">First Name : </label>
+            <input type="text" id="fname" name="fname"><br><br>
+            <label for="lname">Last Name : </label>
+            <input type="text" id="lname" name="lname"><br><br>
+            <br>
+            <hr width="37%"><br><br>
+            <button onclick="autowrite()"><strong>Auto - Write</strong></button>
+        </form>
+    </div>
+
+    <br><br>
+    <hr width="37%"><br><br>
+
+    <div id="div2">
+
+
+
+        <button onclick="divprint()"><strong>Show Name</strong></button>
+    </div>
+    <script>
+        function autowrite() {
+            document.getElementById('fname').value = 'CHEOLHEE';
+            document.getElementById('lname').value = 'PARK';
+        }
+
+        function divprint() {
+            document.getElementById("div2").innerHTML = 
+            `<label for="fname">First Name : </label>
+             <input type="text" id="fname" name="fname" value="CHEOLHEE"><br><br>
+             <label for="lname">Last Name : </label>
+             <input type="text" id="lname" name="lname" value="PARK"><br><br>`;
+        }
+    </script>
+
+</body>
+
+</html>
