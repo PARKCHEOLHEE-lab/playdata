@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    button {
+        font-family: Montserrat;
+    }
+
+    input {
+        font-family: Montserrat;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    body {
+        font-family: Montserrat;
+        text-align: center;
+        margin-top: 50px;
+    }
+</style>
+
+<body>
+
+
+    User Numb : <input type="text" id="unumb" onchange="nameprint(this.value)"><br>
+    <br>
+    <hr width="49%"><br>
+    First Name : <input type="text" id="fname"><br><br>
+    Last Name : <input type="text" id="lname"><br><br>
+
+
+    <script>
+        function nameprint(usernumb) {
+            for (p in person_all) {
+                if (person_all[p].unumb == usernumb) {
+                    document.getElementById('fname').value = person_all[p].fname;
+                    document.getElementById('lname').value = person_all[p].lname;
+                    alert("Auto-Write Complete")
+                //     break;
+                // } else {
+                //     alert("The Number Does Not Exist")
+                //     break;
+                }
+            }
+        }
+        let person_all = {
+            "p1": {
+                "fname": "John",
+                "lname": "Doe",
+                "unumb": 5566
+            },
+            "p2": {
+                "fname": "Jaeseok",
+                "lname": "Yoo",
+                "unumb": 5867
+            },
+            "p3": {
+                "fname": "Jongwon",
+                "lname": "Baek",
+                "unumb": 1256
+            },
+            "p4": {
+                "fname": "Cheolhee",
+                "lname": "Park",
+                "unumb": 9403
+            }
+        };
+
+
+
+
+    </script>
+
+</body>
+
+</html>

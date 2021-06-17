@@ -7,6 +7,26 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <script>
+
+        let person = {
+            name : 'PARKCHEOL-HEE',
+            age  : 28
+        };
+        console.log(person);          // python의 dictionary type
+        console.log(person.name);     // key값으로 호출 가능
+        console.log(person.age);
+        console.log(typeof(person));  // object type
+
+        let person2 = {
+            name : 'PARKDONG-HO',
+            age  : 11,
+            id   : 9403,
+            allinfo : function(){
+                return 'Name:' + this.name + ' | ' + 'Age:' + this.age + ' | ' + 'ID:' + this.id;
+            }
+        };
+        console.log(person2.allinfo());
+    </script>
 </body>
 </html>
