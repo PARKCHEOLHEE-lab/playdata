@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Practice</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/emp.css')}}">
+
+    <style>
+        body,
+        button,
+        input {
+            text-align: center;
+            font-family: Montserrat;
+        }
+
+        #chart_div,
+        #demo,
+        #info {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .box {
+            margin: 0 auto;
+            width: 300px;
+            height: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <br><button onclick="Ajax01()">Data Access</button><br><br>
+    <div class="box"id="demo"></div>
+
+    <br><hr width="40%"><br>
+
+    <button onclick="ShowChart()">Show Chart</button><br><br>
+    <div class="box" id="chart_div" style="width: 900px; height:350px" style="align-content: center;"></div>
+
+    <br><hr width="40%"><br>
+
+    <h4>Search Employee</h4>
+    <input style="font-size: smaller;" type="text" id="empno" placeholder="Write Empno & Search"><br><br>
+    <button onclick="Ajax02()">Search</button><br><br>
+    <div class="box" id="info"><br><br></div>
+
+    <br><hr width="40%"><br>
+    <h4>Employee Management</h4>
+    <input style="font-size: smaller;" type="text" id="newEmpno" placeholder="Write Numb"><br><br>
+    <input style="font-size: smaller;" type="text" id="newEname" placeholder="Write Name"><br><br>
+    <input style="font-size: smaller;" type="text" id="newSal" placeholder="Write Sal"><br><br>
+    <button id="insertBtn()" onclick="insertEmp()">Insert Employee</button>　
+    <button id="updateBtn()" onclick="updateEmp()">Update Employee</button><br><br>
+
+    <br><hr width="40%"><br>
+    <h4>Employee Delete</h4>
+    <input style="font-size: smaller;" type="text" id="delEmpno" placeholder="Write Numb"><br><br>
+    <button id="delBtn()" onclick="deleteEmp()">Delete Employee</button><br><br>
+
+    <br><hr width="40%"><br>
+    <h4>Employee Information</h4>
+    <button onclick="empall()">Show Table</button><br><br>
+    왜 여기에 출력이 안돼 ?????????????????????????????? <br><br>
+    div id='table'로 바꿨는데???????????????????????? <br>
+    <h2>div id='demo'에 출력되는 이유좀 알려주세요 이걸 보시는분은 제발</h2>
+    <div class="box" id="table" style="width: 1500px; height:350px; text-align: center;"></div>
+
+
+    <script src="{{url_for('static', filename='js/emp.js')}}"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+        function Ajax01() {
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+
+                if (this.readyState == 4 && this.status == 200) {
+                    data = this.responseText;
+
+                    document.getElementById("demo").innerHTML = data;
+                    data = JSON.parse(data);
+
+                    // document.getElementById("name").innerHTML = data.name;
+                    // document.getElementById("age").innerHTML = data.age;
+
+                }
+            }
+
+            xhttp.open("GET", "getdata");
+            xhttp.send();
+        };
+
+
+        function ShowChart() {
+
+            google.charts.load('current', { 'packages': ['corechart'] });
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+
+                var data = google.visualization.arrayToDataTable([
+                    ['Age', 'Weight'],
+                    [8, 12],
+                    [4, 5.5],
+                    [11, 14],
+                    [4, 5],
+                    [3, 3.5],
+                    [6.5, 7]
+                ]);
+
+                var options = {
+                    title: 'Age vs. Weight comparison',
+                    hAxis: { title: 'Age', minValue: 0, maxValue: 15 },
+                    vAxis: { title: 'Weight', minValue: 0, maxValue: 15 },
+                    legend: 'none'
+                };
+
+                var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+
+                chart.draw(data, options);
+            }
+        };
+
+        function Ajax02() {
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+
+                if (this.readyState == 4 && this.status == 200) {
+                    data = this.responseText;
+                    data = JSON.parse(data);
+
+                    document.getElementById("info").innerHTML = 'Name : ' + data.ename + ' / Sal : ' + data.sal;
+
+
+                }
+            }
+            xhttp.open("POST", "getemp");
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("empno=" + document.getElementById("empno").value);
+        };
+
+        function insertEmp() {
+            alert("Insert Complete");
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+
+                if (this.readyState == 4 && this.status == 200) {
+                    data = this.responseText;
+                    data = JSON.parse(data);
+
+                    document.getElementById("empno").value = document.getElementById("newEmpno").value;
+                    document.getElementById("ename").value = data.ename;
+                    document.getElementById("sal").value = data.sal;
+                    alert("Insert Complete"); // Status 500 error
+                                              // Insert는 됨......
+                }
+            }
+            xhttp.open("POST", "insertemp");
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            queryString = "empno=" + document.getElementById("newEmpno").value +
+                "&ename=" + document.getElementById("newEname").value +
+                "&sal=" + document.getElementById("newSal").value;
+            xhttp.send(queryString);
+        };
+
+        function updateEmp() {
+            alert("Update Complete");
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+
+                if (this.readyState == 4 && this.status == 200) {
+                    data = this.responseText;
+                    data = JSON.parse(data);
+
+                    document.getElementById("empno").value = data.empno;
+                    document.getElementById("ename").value = data.ename;
+                    document.getElementById("sal").value = data.sal;
+                }
+            }
+            xhttp.open("PUT", "updateemp");
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            queryString = "empno=" + document.getElementById("newEmpno").value +
+                "&ename=" + document.getElementById("newEname").value +
+                "&sal=" + document.getElementById("newSal").value;
+            xhttp.send(queryString);
+        };
+
+        function deleteEmp() {
+            alert("Delete Complete");
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+
+                if (this.readyState == 4 && this.status == 200) {
+                    data = this.responseText;
+                    data = JSON.parse(data);
+                    alert("Delete Complete");  // Status 500 error
+                                                // Insert는 됨......
+
+                }
+            };
+            xhttp.open("DELETE", "deleteemp");
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            // empno=1&ename=재석&sal=10
+            queryString = "empno=" + document.getElementById("delEmpno").value;
+            xhttp.send(queryString);
+            };
+    </script>
+
+</body>
+
+</html>
