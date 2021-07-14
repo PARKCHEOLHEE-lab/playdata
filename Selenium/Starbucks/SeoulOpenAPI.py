@@ -19,21 +19,22 @@ def open_api(url, service):
     except:
         pass
 
-        return data_list
-
+    return data_list
 
 s_api = open_api(url, "SdeTlSccoSigW")
+
 columns = ["SIG_CD", "SIG_KOR_NM", "LAT", "LNG"]
 
-df_seoul_final = pd.DataFrame(s_api, columns=columns)
+df_seoul_final = pd.DataFrame(data=s_api, columns=columns)
 df_seoul_final.columns = ["시군구코드", "시군구명",  "위도", "경도"]
 
+
 df_seoul_final.to_excel("Starbucks/df_seoul_final.xlsx", index=False)
+print(df_seoul_final.head())
 
-
-# url2 = f"http://openapi.seoul.go.kr:8088/{MY_KEY}/json/octastatapi419/1/5/2018.1-4/합계"
-# s_pop = open_api(url2, "octastatapi419")
-# df_pop = pd.DataFrame(s_pop)
+url2 = f"http://openapi.seoul.go.kr:8088/{MY_KEY}/json/octastatapi419/1/5/2018.1-4/합계"
+s_pop = open_api(url2, "octastatapi419")
+df_pop = pd.DataFrame(s_pop)
 
 # 통계데이터 open api 서비스 종료....
 # *.tsv file download
